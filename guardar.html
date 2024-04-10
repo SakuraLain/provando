@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>holi</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+<style>
+  @media print {
+  .no {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <!-- <h1 class="title no">Extractor de elementos</h1> -->
+        <div class="field">
+            <label class="label no">Ingresa la URL base de la página:</label>
+            <div class="control no">
+                <input id="urlInput" class="input" type="text" placeholder="https://www.ejemplo.com">
+            </div>
+        </div>
+        <button id="extractButton" class="button is-primary mb-4 no">Extraer elementos</button>
+        <button id="printPdfButton" class="button is-success mb-4 no">Imprimir como PDF</button>
+        <div id="results" class="content"></div>
+        
+        
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
+        <script src="guardar.js"></script> 	
+    </div>
+</section>
+</body>
+</html>
