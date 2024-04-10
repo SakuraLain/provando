@@ -37,6 +37,5 @@ $(document).ready(function() {
 
       window.print();
       document.body.innerHTML = originalContent;
-      window.location.reload();
   });
 });
