@@ -16,7 +16,6 @@
 <body>
 <section class="section">
     <div class="container">
-        <!-- <h1 class="title no">Extractor de elementos</h1> -->
         <div class="field">
             <label class="label no">Ingresa la URL base de la página:</label>
             <div class="control no">
@@ -27,11 +26,49 @@
         <button id="printPdfButton" class="button is-success mb-4 no">Imprimir como PDF</button>
         <div id="results" class="content"></div>
         
-        
-        <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         
-        <script src="guardar.js"></script> 	
+        <script>
+        $(document).ready(function() {
+          $('#extractButton').click(function() {
+              var baseUrl = $('#urlInput').val();
+              var extractedData = '';
+              var totalPages = 20;
+              var currentPage = 1;
+        
+              function extractData(url) {
+                  $.get(url, function(data) {
+                      var elements = $(data).find('pre');
+                      elements.each(function(index, element) {
+                          var paragraphs = $(element).find('p');
+                          paragraphs.each(function(idx, para) {
+                              extractedData += '<p>' + $(para).html() + '</p>';
+                          });
+                      });
+        
+                      if (currentPage < totalPages) {
+                          currentPage++;
+                          var nextUrl = baseUrl + '/page/' + currentPage;
+                          extractData(nextUrl);
+                      } else {
+                          $('#results').empty().html(extractedData); // Vaciar el contenido actual y mostrar los datos extraídos
+                      }
+                  });
+              }
+        
+              extractData(baseUrl);
+          });
+        
+          $('#printPdfButton').click(function() {
+              var pdfContent = document.body.innerHTML;
+              var originalContent = document.body.innerHTML;
+              document.body.innerHTML = pdfContent;
+        
+              window.print();
+              document.body.innerHTML = originalContent;
+          });
+        });
+      </script>
     </div>
 </section>
 </body>
