@@ -36,6 +36,8 @@
               var totalPages = 20;
               var currentPage = 1;
         
+              $('#results').html('<p>Cargando...</p>'); // Mostrar mensaje de carga
+        
               function extractData(url) {
                   $.get(url, function(data) {
                       var elements = $(data).find('pre');
