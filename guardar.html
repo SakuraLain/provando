@@ -36,7 +36,7 @@
               var totalPages = 20;
               var currentPage = 1;
         
-              $('#results').html('<p>Cargando...</p>'); // Mostrar mensaje de carga
+              $('#results').html('<p>Cargando...</p>'); 
         
               function extractData(url) {
                   $.get(url, function(data) {
@@ -53,21 +53,25 @@
                           var nextUrl = baseUrl + '/page/' + currentPage;
                           extractData(nextUrl);
                       } else {
-                          $('#results').empty().html(extractedData); // Vaciar el contenido actual y mostrar los datos extraídos
+                          $('#results').empty().html(extractedData); 
                       }
                   });
               }
         
               extractData(baseUrl);
           });
-        
+
           $('#printPdfButton').click(function() {
+            if(window.innerWidth <= 768) { 
+                window.print();
+            } else {
               var pdfContent = document.body.innerHTML;
               var originalContent = document.body.innerHTML;
               document.body.innerHTML = pdfContent;
         
               window.print();
               document.body.innerHTML = originalContent;
+            }
           });
         });
       </script>
