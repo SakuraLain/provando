@@ -62,16 +62,13 @@
           });
 
           $('#printPdfButton').click(function() {
-            if(window.innerWidth <= 768) { 
-                window.print();
-            } else {
               var pdfContent = document.body.innerHTML;
               var originalContent = document.body.innerHTML;
               document.body.innerHTML = pdfContent;
         
               window.print();
               document.body.innerHTML = originalContent;
-            }
+            
           });
         });
       </script>
